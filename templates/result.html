@@ -67,6 +67,27 @@
     <hr>
 
     {% endif %}
+    <hr>
+
+<h2>📊 Language Analytics</h2>
+
+<div class="stats">
+
+{% for lang, count in languages.items() %}
+
+<div class="box">
+
+<h2>{{ count }}</h2>
+
+<p>{{ lang }}</p>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<hr>
 
     <h2>📂 All Repositories</h2>
 
