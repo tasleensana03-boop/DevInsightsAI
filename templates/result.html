@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DevInsight AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <img src="{{ avatar }}">
+
+    <h1>{{ name }}</h1>
+
+    <h3>@{{ username }}</h3>
+
+    <p>{{ bio }}</p>
+
+    <div class="location">
+        📍 {{ location }}
+    </div>
+
+    <div class="stats">
+
+    <div class="box">
+        <h2>{{ repos }}</h2>
+        <p>Repositories</p>
+    </div>
+
+    <div class="box">
+        <h2>{{ followers }}</h2>
+        <p>Followers</p>
+    </div>
+
+    <div class="box">
+        <h2>{{ following }}</h2>
+        <p>Following</p>
+    </div>
+
+    <div class="box">
+        <h2>{{ total_stars }}</h2>
+        <p>Total Stars</p>
+    </div>
+
+</div>
+
+    <hr>
+
+    {% if top_repo %}
+
+    <h2>🏆 Top Repository</h2>
+
+    <div class="repo">
+
+        <h3>{{ top_repo["name"] }}</h3>
+
+        <p>{{ top_repo["description"] }}</p>
+
+        <p>⭐ Stars: {{ top_repo["stargazers_count"] }}</p>
+
+        <p>💻 Language: {{ top_repo["language"] }}</p>
+
+    </div>
+
+    <hr>
+
+    {% endif %}
+
+    <h2>📂 All Repositories</h2>
+
+    {% for repo in repositories %}
+
+    <div class="repo">
+
+        <h3>{{ repo["name"] }}</h3>
+
+        <p>{{ repo["description"] }}</p>
+
+        <p>⭐ Stars: {{ repo["stargazers_count"] }}</p>
+
+        <p>💻 Language: {{ repo["language"] }}</p>
+
+    </div>
+
+    <hr>
+
+    {% endfor %}
+
+    <button onclick="window.location.href='/'">
+        Search Another Profile
+    </button>
+
+</div>
+
+</body>
+</html>
