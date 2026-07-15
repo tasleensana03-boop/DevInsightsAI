@@ -2,20 +2,23 @@
 <html>
 
 <head>
-    <title>DevInsight AI</title>
+    <title>DevInsightsAI</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
 
 <div class="container">
 
-    <img src="{{ avatar }}">
+    <img src="{{ avatar }}" width="150">
 
-    <h1>{{ name }}</h1>
+    <h1 class="profile-name">{{ name }}</h1>
 
-    <h3>@{{ username }}</h3>
-
+    <h3 class="username">@{{ username }}</h3>
     <p>{{ bio }}</p>
 
     <div class="location">
@@ -24,27 +27,94 @@
 
     <div class="stats">
 
-    <div class="box">
-        <h2>{{ repos }}</h2>
-        <p>Repositories</p>
+        <div class="box">
+            <h2>{{ repos }}</h2>
+            <p>Repositories</p>
+        </div>
+
+        <div class="box">
+            <h2>{{ followers }}</h2>
+            <p>Followers</p>
+        </div>
+
+        <div class="box">
+            <h2>{{ following }}</h2>
+            <p>Following</p>
+        </div>
+
     </div>
 
-    <div class="box">
-        <h2>{{ followers }}</h2>
-        <p>Followers</p>
+    <hr>
+
+    <h2>⭐ Developer Score</h2>
+
+    <div class="repo">
+
+        <h1>{{ score }}/100</h1>
+
+        <progress value="{{ score }}" max="100"></progress>
+
+        <br><br>
+
+        {% if score >= 80 %}
+            <p>🏆 Excellent GitHub Profile</p>
+
+        {% elif score >= 60 %}
+            <p>🚀 Good Developer Profile</p>
+
+        {% elif score >= 40 %}
+            <p>🌱 Growing Developer</p>
+
+        {% else %}
+            <p>💡 Keep Building Projects!</p>
+
+        {% endif %}
+
     </div>
 
-    <div class="box">
-        <h2>{{ following }}</h2>
-        <p>Following</p>
+    <hr>
+
+    <h2>🤖 Developer Intelligence Report</h2>
+
+    <div class="repo">
+
+        <h3>Developer Type</h3>
+        <p>{{ developer_type }}</p>
+
+        <h3>💡 Strength</h3>
+        <p>{{ strength }}</p>
+        <h3>🎓 Experience</h3>
+<p>{{ experience }}</p>
+
+<h3>📈 GitHub Score</h3>
+<p>{{ score }}/100</p>
+
+<h3>🏅 Rank</h3>
+<p>{{ rank }}</p>
+
     </div>
 
-    <div class="box">
-        <h2>{{ total_stars }}</h2>
-        <p>Total Stars</p>
+    <hr>
+
+    <h2>📊 Language Analytics</h2>
+
+    <div class="stats">
+
+        {% for lang, count in languages.items() %}
+
+        <div class="box">
+
+            <h2>{{ count }}</h2>
+
+            <p>{{ lang }}</p>
+
+        </div>
+
+        {% endfor %}
+
     </div>
 
-</div>
+    <canvas id="languageChart"></canvas>
 
     <hr>
 
@@ -67,27 +137,6 @@
     <hr>
 
     {% endif %}
-    <hr>
-
-<h2>📊 Language Analytics</h2>
-
-<div class="stats">
-
-{% for lang, count in languages.items() %}
-
-<div class="box">
-
-<h2>{{ count }}</h2>
-
-<p>{{ lang }}</p>
-
-</div>
-
-{% endfor %}
-
-</div>
-
-<hr>
 
     <h2>📂 All Repositories</h2>
 
@@ -114,6 +163,73 @@
     </button>
 
 </div>
+<footer>
 
+<hr>
+
+<h2> DevInsightsAI</h2>
+
+<p>Designed & Developed by</p>
+
+<h3> Tasleen Sana </h3>
+
+<p>Artificial Intelligence & Data Science Engineer</p>
+
+<p>
+Powered by Python • Flask • GitHub API • Chart.js
+</p>
+
+<p>© 2026 DevInsightsAI</p>
+
+</footer>
+
+<script>
+
+const languageData = {
+    labels: [
+        {% for lang in languages.keys() %}
+        "{{ lang }}",
+        {% endfor %}
+    ],
+    datasets: [{
+        label: "Repositories",
+        data: [
+            {% for count in languages.values() %}
+            {{ count }},
+            {% endfor %}
+        ],
+        backgroundColor: [
+            "#3b82f6",
+            "#8b5cf6",
+            "#06b6d4",
+            "#10b981",
+            "#f59e0b",
+            "#ef4444",
+            "#ec4899"
+        ],
+        borderRadius: 10,
+        borderWidth: 0
+    }]
+};
+
+const config = {
+    type: "bar",
+    data: languageData,
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+};
+
+new Chart(
+    document.getElementById("languageChart"),
+    config
+);
+
+</script>
 </body>
 </html>

@@ -1,37 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevInsight AI</title>
+
+    <title>DevInsightsAI</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-<div class="container">
+<div class="hero">
 
-    <h1>🚀 DevInsight AI</h1>
+    <div class="container">
 
-    <p>AI-Powered GitHub Portfolio Analyzer</p>
+        <img class="github-logo" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
 
-    <form action="/analyze" method="POST">
+<h1 class="title"> DevInsightsAI</h1>
 
-        <input
-            type="text"
-            name="username"
-            placeholder="Enter GitHub Username"
-            required
-        >
+        <h2 class="subtitle">
+            AI-Powered GitHub Analytics Platform
+        </h2>
 
-        <button type="submit">
-            Analyze Profile
-        </button>
+        <p class="description">
 
-    </form>
+            Analyze GitHub profiles, discover repository insights,
+            developer intelligence, language analytics and GitHub score
+            in seconds.
+
+        </p>
+        <div class="features">
+
+    <div class="feature-card">
+
+        <div class="icon">📊</div>
+
+        <h3>Analytics</h3>
+
+        <p>Repository statistics and language insights.</p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">🤖</div>
+
+        <h3>AI Insights</h3>
+
+        <p>Discover developer strengths and intelligence.</p>
+
+    </div>
+
+    <div class="feature-card">
+
+        <div class="icon">🏆</div>
+
+        <h3>GitHub Score</h3>
+
+        <p>Measure your GitHub profile professionally.</p>
+
+    </div>
+
+</div>
+
+        <form action="/analyze" method="POST">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter GitHub Username"
+                required
+            >
+
+            <button type="submit">
+
+                🚀 Analyze Profile
+
+            </button>
+
+        </form>
+
+        <div class="developer">
+
+    <p class="developer-text">
+        Designed & Developed by
+    </p>
+
+    <h3 class="developer-name">
+        Tasleen Sana
+    </h3>
+
+    <p class="developer-role">
+        Aspiring AI & Data Science Engineer
+    </p>
+
+</div>
+    </div>
 
 </div>
 
 </body>
+
 </html>
